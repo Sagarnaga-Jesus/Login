@@ -10,6 +10,9 @@ def main(page: ft.Page):
     admin="Holadmin"
     admincontra="admin"
     
+    aviso=""
+    page.add(aviso)
+    
     page.add(ft.Text("Inicio de sesion",size=30))
     
     page.add(ft.Icon(icon=ft.Icons.PERSON,
@@ -26,11 +29,15 @@ def main(page: ft.Page):
     
     def verifica():
         if admin==correo.value and admincontra==contra.value:
-            page.add(ft.Text("Correcta"))
+            aviso=page.show_dialog(ft.SnackBar(ft.Text("Has iniciado sesion correctamente")))
         else:
-            page.add(ft.Text("Correo o contraseña incorrecta"))
+            aviso=page.show_dialog(ft.SnackBar(ft.Text("Usuario o contraseña incorrecta")))
+            
+    def olvidado():
+        page.show_dialog(ft.SnackBar(ft.Text("Se a enviado su contraseña al correo")))
+        
     
     page.add( ft.ElevatedButton("Iniciar sesion",color=ft.Colors.WHITE ,bgcolor=ft.Colors.BLUE, on_click=verifica))
-    page.add( ft.TextButton("¿Olvidaste la contraseña?"))
+    page.add( ft.TextButton("¿Olvidaste la contraseña?", on_click=olvidado))
     
 ft.run(main)
