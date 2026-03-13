@@ -10,34 +10,40 @@ def main(page: ft.Page):
     admin="Holadmin"
     admincontra="admin"
     
-    aviso=""
-    page.add(aviso)
-    
     page.add(ft.Text("Inicio de sesion",size=30))
     
-    page.add(ft.Icon(icon=ft.Icons.PERSON,
+    page.add(ft.Icon(icon=ft.Icons.LOCK,
                 color=ft.Colors.BLUE_500, 
                 size=50
         ))
     
-    nombre=(ft.TextField(label="Nombre"))
-    apellido=(ft.TextField(label="Apellido"))
-    correo=(ft.TextField(label="Correo",autofocus=True))
-    contra=(ft.TextField(label="Contraseña",password=True, autofocus=True))
+    correo=(ft.TextField(label="Correo",autofocus=True, icon=ft.Icons.PERSON, color=ft.Colors.BLUE_500, ))
+    contra=(ft.TextField(label="Contraseña",password=True, autofocus=True, icon=ft.Icons.PASSWORD, color=ft.Colors.BLUE_500,))
     
     page.add(correo,contra)
     
     def verifica():
         if admin==correo.value and admincontra==contra.value:
-            aviso=page.show_dialog(ft.SnackBar(ft.Text("Has iniciado sesion correctamente")))
+            page.show_dialog(ft.SnackBar(ft.Text("Has iniciado sesion correctamente")))
         else:
-            aviso=page.show_dialog(ft.SnackBar(ft.Text("Usuario o contraseña incorrecta")))
+            page.show_dialog(ft.SnackBar(ft.Text("Usuario o contraseña incorrecta")))
             
     def olvidado():
         page.show_dialog(ft.SnackBar(ft.Text("Se a enviado su contraseña al correo")))
         
     
-    page.add( ft.ElevatedButton("Iniciar sesion",color=ft.Colors.WHITE ,bgcolor=ft.Colors.BLUE, on_click=verifica))
+    page.add( ft.Button("Iniciar sesion",color=ft.Colors.WHITE ,bgcolor=ft.Colors.BLUE, on_click=verifica))
     page.add( ft.TextButton("¿Olvidaste la contraseña?", on_click=olvidado))
+    
+    page.add(
+            ft.NavigationBar(
+                destinations=[
+                    ft.NavigationBarDestination(icon=ft.Icons.HOUSE, label="Inicio"),
+                    ft.NavigationBarDestination(icon=ft.Icons.BOOK, label="Nuevo"),
+                    ft.NavigationBarDestination(icon=ft.Icons.MENU_BOOK, label="Perfil"),
+                ],
+            )
+        
+    )
     
 ft.run(main)
