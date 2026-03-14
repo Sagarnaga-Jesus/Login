@@ -48,6 +48,7 @@ def main(page: ft.Page):
                 contra,
                 iniciar,
                 olvidada
+                
             ],
             alignment=ft.MainAxisAlignment.CENTER,
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
