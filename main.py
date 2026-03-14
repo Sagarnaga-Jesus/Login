@@ -17,8 +17,8 @@ def main(page: ft.Page):
         contra.password = not contra.password
         contra.update()
         
-    correo=(ft.TextField(label="Correo",autofocus=True, icon=ft.Icons.PERSON, color=ft.Colors.BLUE_800, ))
-    contra=(ft.TextField(label="Contraseña",suffix=ft.IconButton(icon=ft.Icons.VISIBILITY, on_click=ver_contra) ,password=True, autofocus=True, icon=ft.Icons.PASSWORD, color=ft.Colors.BLUE_800,))
+    correo=(ft.TextField(label="Correo",autofocus=True, icon=ft.Icons.PERSON ))
+    contra=(ft.TextField(label="Contraseña",suffix=ft.IconButton(icon=ft.Icons.VISIBILITY, on_click=ver_contra) ,password=True, autofocus=True, icon=ft.Icons.PASSWORD))
     
     def verifica():
             if admin==correo.value and admincontra==contra.value:
